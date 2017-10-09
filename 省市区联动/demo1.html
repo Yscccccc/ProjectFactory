@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="area.js"></script>
+	<script type="text/javascript" src="areaLinked.js"></script>
+</head>
+<body>
+	<select id="Province" name="Province"></select>  
+    <select id="City" name="City"></select>  
+    <select id="Area" name="Area"></select>
+
+    <script type="text/javascript">
+	    var Province = document.getElementById("Province");
+	    var City = document.getElementById("City");  
+	    var Area = document.getElementById("Area");    
+        new Address(Province,City,Area,provinceList)
+    </script>  
+</body>
+</html>
