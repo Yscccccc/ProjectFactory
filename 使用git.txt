@@ -1,0 +1,27 @@
+1.设置用户名
+git config -global user.name 'xxx'
+
+2.设置用户名邮箱
+git config -global user.email 'xxx@xx.com'
+
+查看设置
+git config --list
+
+3.克隆仓库地址
+git clone 仓库地址
+
+4.上传到本地仓库
+git add .
+git commit -m '描述'
+
+5.上传到远程仓库
+git push origin master
+
+查看状态
+git status
+
+删除文件
+rm -rf 文件名
+
+删除文件夹
+rm -rf 文件夹名/
