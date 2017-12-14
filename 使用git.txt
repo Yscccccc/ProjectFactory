@@ -25,3 +25,15 @@ rm -rf 文件名
 
 删除文件夹
 rm -rf 文件夹名/
+
+新建分支
+git branch -b xxx
+
+切换分支
+git checkout xxx
+
+更新分支内容到原分支
+git merge xxx
+
+更新内容
+git pull

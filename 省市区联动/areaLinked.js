@@ -51,7 +51,7 @@ Address.prototype = {
 		this.select(this.City, this.defaultCity);
 		this.changeCity();
 
-		this.City.onchange = this.changeCity;
+		this.City.onchange = this.changeCity.bind(this);
 	},
 	_init: function (){
 		for(var i = 0; i < this.provinceList.length; i++){
@@ -59,6 +59,6 @@ Address.prototype = {
 		}
 		this.select(this.Province, this.defaultProvince);
 		this.changeProvince();
-		this.Province.onchange = this.changeProvince;
+		this.Province.onchange = this.changeProvince.bind(this);
 	}
 }
