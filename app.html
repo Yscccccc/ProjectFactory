@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>新情景关联任务</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /><!--禁用缓存-->
+		<meta http-equiv="Pragma" content="no-cache" /><!--禁用缓存-->
+		<meta http-equiv="Expires" content="0" /><!--禁用缓存-->		
+		<link rel="stylesheet" href="css/default/mui.min.css">
+		<link href="css/default/mui.picker.min.css" rel="stylesheet" />
+		<link href="css/default/mui.poppicker.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/default/feedback-page.css" />
+		<link rel="stylesheet" type="text/css" href="css/custom/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="css/custom/app.css">
+		<link rel="stylesheet" type="text/css" href="css/custom/task.css">
+		<script src="js/default/zepto.min.js"></script>
+		<script src="js/custom/ajax.js" id="interface"></script>
+	</head>
+	<body class="mui-fullscreen">
+		<!--页面主结构开始-->
+		<div id="newTask" class="mui-views mui-content">
+			<div class="mui-view">
+				<div class="mui-navbar"></div>
+				<div class="mui-pages"></div>
+			</div>
+		</div>
+		<!--页面主结构结束-->
+		<!--单页面开始-->
+		<div id="setting" class="mui-page">
+			<!--页面标题栏开始-->
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-btn mui-btn-link mui-btn-nav mui-pull-left goBack">
+					<span class="mui-icon mui-icon-left-nav"></span>
+				</button>
+				<h1 class="mui-center mui-title">新智能任务</h1>
+				<button class="mui-right mui-btn mui-btn-link mui-pull-right" id="savaTask" type="button" onclick="return false">确认</button>
+			</div>
+			<!--页面标题栏结束-->
+			<!--页面主内容区开始-->
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view mui-table-view-chevron _newTaskUl">
+							<div class="mui-input-row" id="taskNameWrap">
+								<input type="text" placeholder="请输入任务名称" class="mui-input-clear" id="taskName" maxlength="10" required>
+							</div>
+							<li class="mui-table-view-cell list list0" data-Index="0">
+								<a href="#notifications" class="mui-navigate-right">
+									<span class="mui-icon iconfont icon-timing"></span>
+								请选择时间
+								</a>
+							</li>
+							<li class="mui-table-view-cell list list1" data-Index="1">
+								<a href="#privacy" class="mui-navigate-right">
+									<span class="mui-icon iconfont icon-triggering"></span>
+									如果发生了...(触发源)
+								</a>
+							</li>
+							<li class="mui-table-view-cell list list2" data-Index="2">
+								<a href="#general" class="mui-navigate-right">
+									<span class="mui-icon iconfont icon-run"></span>
+								就执行...(某个情景模式)
+								</a>
+							</li>
+						</ul>
+						<ul class="mui-table-view mui-table-view-chevron addFeedback">
+							<li class="mui-table-view-cell">
+								<a href="#feedback" class="">
+									<span class="mui-icon mui-icon-plus"></span>
+									<label>动态添加关联情景</label>
+								</a>
+							</li>
+						</ul>
+						<div class="mui-button-row savaTaskwrap">
+<!-- 							<a href="#" title="">
+								<button class="mui-btn mui-btn-success mui-btn-block" id="savaTask" type="button" onclick="return false">确认</button>
+							</a> -->
+							<a href="#" title="">
+								<button class="mui-btn mui-btn-success mui-btn-block" id="clearTask" type="button" onclick="return false;">取消</button>
+							</a>
+						</div>												
+					</div>
+				</div>
+			</div>
+			<!--页面主内容区结束-->
+		</div>
+		<!--单页面结束-->
+		<div id="account" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left" id="accountBack">
+					<span class="mui-icon mui-icon-left-nav"></span>
+				</button>
+				<h1 class="mui-center mui-title">再执行...(某个情景模式)</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view"></ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="notifications" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left" id="notificationsBack">
+					<span class="mui-icon mui-icon-left-nav"></span>
+				</button>
+				<h1 class="mui-center mui-title">请选择时间</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell" data-select="0">
+								<div class="mui-input-row mui-radio"><label>任何时间</label><input name="radio0" type="radio"></div>
+							</li>
+						</ul>
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell">
+								<div class="mui-input-row mui-radio"><label>指定时间段</label><input name="radio0" type="radio"></div>
+							</li>
+			    			<li class="mui-table-view-cell timeWrap" data-select="1">
+								<div class="mui-input-row">
+									<label>开始时间</label>
+									<button id='TIME1' data-options='{"type":"time"}' class="btn mui-btn mui-btn-block" placeholder="选择时间 ...">选择时间 ...</button>
+								</div>
+								<div class="mui-input-row">
+									<label>结束时间</label>
+									<button id='TIME2' data-options='{"type":"time"}' class="btn mui-btn mui-btn-block" placeholder="选择时间 ...">选择时间 ...</button>
+								</div>
+							</li>
+							<li class="mui-table-view-cell weekWrap">
+								<div class="mui-input-row">
+				        			<a href="#Popover_0">
+				        			<label id="forweek">点击选择星期</label>
+				        			<input type="text" placeholder="点击选择星期" class="week" id="week" value="">
+				        			</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="privacy" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left" id="privacyBack">
+					<span class="mui-icon mui-icon-left-nav"></span>
+				</button>
+				<h1 class="mui-center mui-title">如果发生了...触发源</h1>
+			</div>
+			
+			<div id="pullrefresh" class="mui-content mui-scroll-wrapper">	
+				<div id="slider" class="mui-slider">
+					<div class="mui-scroll">
+						<ul class="mui-table-view"></ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="general" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left" id="generalBack">
+					<span class="mui-icon mui-icon-left-nav"></span>
+				</button>
+				<h1 class="mui-center mui-title">就执行...(某个情景模式)</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view"></ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="about" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>
+				</button>
+				<h1 class="mui-center mui-title">动态添加任务</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell">
+								<a id="feedback-btn" href="#feedback" class="mui-navigate-right">添加再执行任务</a>
+							</li>					
+						</ul>
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell">
+								<a class="" href="#">任务列表</a>
+							</li>
+							<li class="mui-table-view-cell"></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="feedback" class="mui-page feedback">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left" id="feedadd">
+					<span class="mui-icon mui-icon-left-nav"></span>
+				</button>
+				<h1 class="mui-center mui-title">再执行...(某个情景模式)</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view"></ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="delayTime" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left" id="delayBack">
+					<span class="mui-icon mui-icon-left-nav"></span>
+				</button>
+				<h1 class="mui-center mui-title">设置延时任务</h1>
+			</div>
+			<div class="mui-page-content">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell mui-input-row setEj">
+						<span class="mui-icon iconfont icon-yanshi"></span>设置延时时间
+					</li>
+		        	<li class="mui-table-view-cell mui-input-row setEj">
+		        		<input type="text" name="" id="field-range-input" disabled>
+						<div class="mui-input-row mui-input-range">	
+							<input type="range" min="5" max="50" id="field-range">
+						</div>
+					</li>
+					<li class="mui-table-view-cell mui-input-row setEj">
+		        		<div class="bz">注:最小5秒，最大50秒</div>
+					</li>					
+				</ul>	
+			</div>		
+		</div>
+		<div id="Popover_0" class="mui-popover"><!--星期选择器-->
+				<div class="mui-popover-arrow"></div>
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<p class="mui-btn mui-btn-block">重复</p>
+						<ul class="mui-table-view mui-table-view-radio">
+							<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#Popover_0">每天</a>
+							</li>
+							<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#Popover_0">工作日</a>
+							</li>
+							<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#Popover_0">周末</a>
+							</li>
+							<li class="mui-table-view-cell"><a class="mui-navigate-right" href="#Popover_0">自定义</a>
+							</li>
+						</ul>
+					</div>
+				</div>					
+		</div>
+		<div id="Popover_1" class="mui-popover"><!--星期选择器-->
+			<form class="mui-input-group">
+				<div class="mui-input-row mui-checkbox" id="xingqi">
+            		<input name="checkbox1" value="MON" type="checkbox">
+            		<input name="checkbox1" value="TUE" type="checkbox">
+            		<input name="checkbox1" value="WED" type="checkbox">
+            		<input name="checkbox1" value="THU" type="checkbox">
+            		<input name="checkbox1" value="FRI" type="checkbox"> 
+            		<input name="checkbox1" value="SAT" type="checkbox"> 
+            		<input name="checkbox1" value="SUN" type="checkbox"> 
+            	</div> 
+				<div class="mui-button-row">
+					<button class="mui-btn mui-btn-success" id="SweekBtn" type="button" onclick="return false;">
+						<a href="#Popover_1" id="SavePopover">确认</a>
+					</button>
+					<button class="mui-btn mui-btn-success" id="CweekBtn" type="button" onclick="return false;">
+						<a href="#Popover_1" id="closePopover">取消</a>
+					</button>
+				</div>
+			</form>
+		</div>
+		<div id="parameterPopover" class="mui-popover"><!--感应设备参数选择-->
+			<form class="mui-input-group">
+				
+			</form>	
+		</div>				
+		<div class="Cmui-popup Cmui-popup-in">
+			<div class="Cmui-popup-inner">
+					<pre class="Cmui-popup-text">添加任务成功</pre>
+			</div>
+		</div>
+		<div class="Cmui-popup-backdrop"></div>	 
+		<script src="js/default/mui.min.js "></script>
+		<script src="js/default/mui.view.js"></script>
+		<script src="js/default/mui.picker.min.js"></script>
+		<script src="js/custom/app.js"></script>
+		<script src="js/custom/forMui.js"></script>
+	</body>
+</html>

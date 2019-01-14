@@ -39,6 +39,7 @@ Address.prototype = {
 		this.select(this.Area, this.defaultArea);
 	},
 	changeProvince: function(){
+		console.log(this);
 		this.City.options.length = 0;
 		this.City.onchange = null;
 		if(this.Province.selectedIndex == -1){
@@ -54,11 +55,13 @@ Address.prototype = {
 		this.City.onchange = this.changeCity.bind(this);
 	},
 	_init: function (){
+		console.log(this);
 		for(var i = 0; i < this.provinceList.length; i++){
 			this.addOption(this.Province, this.provinceList[i].name, this.provinceList[i]);
 		}
 		this.select(this.Province, this.defaultProvince);
 		this.changeProvince();
+
 		this.Province.onchange = this.changeProvince.bind(this);
 	}
 }
